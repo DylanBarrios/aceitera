@@ -1,5 +1,7 @@
 package aceitera.main;
-import aceitera.uii.Main;
+import aceitera.uii.Login;
+import aceitera.uii.Administrador;
+
 /**
  *
  * @author dylan
@@ -10,8 +12,9 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Main main = new Main();
-        main.setVisible(true);
-    }
-    
+//        Login login = new Login();
+//        login.setVisible(true);
+        Administrador admin = new Administrador();
+        admin.setVisible(true);
+    }    
 }

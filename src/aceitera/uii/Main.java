@@ -1,4 +1,6 @@
 package aceitera.uii;
+import aceitera.mysql.Conector;
+import java.sql.Connection;
 
 /**
  *
@@ -6,6 +8,7 @@ package aceitera.uii;
  */
 public class Main extends javax.swing.JFrame {
 
+    Conector con;
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -21,8 +24,13 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Vender");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 80, 130, 60));
+        jButton1.setText("Conectar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 550, 130, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/fondoFiltro.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -30,6 +38,12 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        con = new Conector();
+        Connection connection = con.getConnection();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
