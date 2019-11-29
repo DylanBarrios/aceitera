@@ -1,5 +1,11 @@
 package aceitera.uii;
 
+import javax.swing.JOptionPane;
+import aceitera.mysql.Conector;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -14,23 +20,24 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtClave = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBackground(new java.awt.Color(1, 1, 1));
-        jTextField1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 270, 50));
+        txtUsuario.setBackground(new java.awt.Color(1, 1, 1));
+        txtUsuario.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(254, 254, 254));
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 270, 50));
 
         jLabel2.setBackground(new java.awt.Color(254, 254, 254));
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 20)); // NOI18N
@@ -54,10 +61,10 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 90, -1));
 
-        jPasswordField1.setBackground(new java.awt.Color(1, 1, 1));
-        jPasswordField1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 270, 50));
+        txtClave.setBackground(new java.awt.Color(1, 1, 1));
+        txtClave.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtClave.setForeground(new java.awt.Color(254, 254, 254));
+        getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 270, 50));
 
         jButton2.setBackground(new java.awt.Color(12, 18, 52));
         jButton2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
@@ -84,39 +91,43 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        Validacion();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    public void Validacion() {
+        if (!txtClave.getText().equals("") || !txtUsuario.getText().equals("")) {                                       //Verificar si los campos no estan vacios
+            Conector conector = new Conector();
+            String usuario = txtUsuario.getText();                                                                      //Almacena el usuario en una variable
+            String clave = txtClave.getText();                                                                          //Almacena la clave en una variable
+            try {
+                Connection connection = conector.getConnection();
+                String sql = "SELECT rango,estado FROM usuarios where usuario = '"+usuario
+                        +"' and clave = '"+clave+"'";                                                                   //Consulta a la D.B. para ver si el usuario y clave exiten
+                
+                PreparedStatement pst = connection.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                if(rs.next()){
+                    String rango = rs.getString("rango");                                                               //Almacena el rango en una variable
+                    String estado = rs.getString("estado");                                                             //Almacena el estado en una variable
+                    if(rango.equals("administrador") && estado.equals("activo")){                                       //Verifica si el usuario esta activo y si es adminsitrador
+                        dispose();                                                                                      //Esconde el login
+                        new Administrador().setVisible(true);                                                           //Muestra ventana de administrador
+                    }else if((rango.equals("trabajador") || rango.equals("invitado")) && estado.equals("activo")){      //Verifica si el usuario esta activo y si es trabajador o invitado
+                        dispose();
+                        new VentasVendedor().setVisible(true);
+                    }
+                }else{                                                                                                  //Si no existe el usuario muestra un mensaje
+                    JOptionPane.showMessageDialog(null, "Falló la autenticacion");
+                    txtUsuario.setText("");
+                    txtClave.setText("");
                 }
+            } catch (Exception e) {
+                System.out.println("Error en login "+e);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
+        } else {                                                                                                        //Si un campo esta vacio muestra un mensaje
+            JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -126,7 +137,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtClave;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
