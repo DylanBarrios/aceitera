@@ -2,16 +2,12 @@ package aceitera.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-public class ConsultasUsuarios {
+public class CrearUsuarios {
 
-    public ConsultasUsuarios() {
+    public CrearUsuarios() {
         Conector con = new Conector();
         PreparedStatement pst = null;
-        ResultSet rs = null;
         Connection connection = con.getConnection();
         
         String sql = "SELECT * FROM usuarios WHERE usuario = ?";
@@ -19,6 +15,7 @@ public class ConsultasUsuarios {
             pst = connection.prepareStatement(sql);
             pst.setString(1, sql);
         } catch (Exception e) {
+            System.err.println("Error al obtener al crear usuario"+e);
         }
     }
     

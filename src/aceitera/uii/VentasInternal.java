@@ -9,12 +9,12 @@ package aceitera.uii;
  *
  * @author dylan
  */
-public class Ventas extends javax.swing.JInternalFrame {
+public class VentasInternal extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Ventas
      */
-    public Ventas() {
+    public VentasInternal() {
         initComponents();
     }
 

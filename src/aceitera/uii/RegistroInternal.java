@@ -4,9 +4,9 @@ import aceitera.clases.SqlUsuarios;
 import aceitera.clases.Usuarios;
 import javax.swing.JOptionPane;
 
-public class Registro extends javax.swing.JInternalFrame {
+public class RegistroInternal extends javax.swing.JInternalFrame {
 
-    public Registro() {
+    public RegistroInternal() {
         initComponents();
         agregarItems();
     }

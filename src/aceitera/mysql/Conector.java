@@ -17,9 +17,6 @@ public class Conector {
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
-            if (connection != null) {
-                System.out.println("Conectado");
-            }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error "+e);
         }

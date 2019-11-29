@@ -6,10 +6,10 @@ import java.sql.Connection;
  *
  * @author dylan
  */
-public class Main extends javax.swing.JFrame {
+public class VentasVendedor extends javax.swing.JFrame {
 
     Conector con;
-    public Main() {
+    public VentasVendedor() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
