@@ -109,7 +109,7 @@ public class Login extends javax.swing.JFrame {
                 if(rs.next()){
                     String rango = rs.getString("rango");                                                               //Almacena el rango en una variable
                     String estado = rs.getString("estado");                                                             //Almacena el estado en una variable
-                    if(rango.equals("administrador") && estado.equals("activo")){                                       //Verifica si el usuario esta activo y si es adminsitrador
+                    if(rango.equals("administrador") && estado.equals("activo")){                                       //Verifica si el usuario esta acteivo y si es adminsitrador
                         dispose();                                                                                      //Esconde el login
                         new Administrador().setVisible(true);                                                           //Muestra ventana de administrador
                     }else if((rango.equals("trabajador") || rango.equals("invitado")) && estado.equals("activo")){      //Verifica si el usuario esta activo y si es trabajador o invitado

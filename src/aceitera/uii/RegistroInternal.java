@@ -32,6 +32,7 @@ public class RegistroInternal extends javax.swing.JInternalFrame {
         Wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
@@ -199,6 +200,7 @@ public class RegistroInternal extends javax.swing.JInternalFrame {
             }
             if (sql.registrar(usuarios)) {                                             //Se revisa si todos los campos fueron aceptados
                 JOptionPane.showMessageDialog(null, "Registro exitoso");
+                limpiar();
             } else {
                 JOptionPane.showMessageDialog(null, "Error, verifique los datos");
             }
@@ -209,5 +211,12 @@ public class RegistroInternal extends javax.swing.JInternalFrame {
         comboRangos.addItem("administrador");
         comboRangos.addItem("trabajador");
         comboRangos.addItem("invitado");
+    }
+    
+    public void limpiar(){
+        txtClave.setText("");
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtUsuario.setText("");
     }
 }

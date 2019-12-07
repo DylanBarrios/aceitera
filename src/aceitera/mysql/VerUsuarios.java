@@ -14,10 +14,10 @@ public class VerUsuarios {
         ResultSet rs = null;
         try {
             st=connection.createStatement();                                    //Crea un consulta
-            rs = st.executeQuery(consulta);                                     //Evalua la consulta
+            rs = st.executeQuery(consulta);                                     //Evalua la consulta que le enviaron como parametro
         } catch (SQLException e) {
             System.err.println("Error al obtener usuarios"+e);                  //Muestra un erro si llegara a suceder
         }
-        return rs;
+        return rs;                                                              //Retorna el resultset de la consulta hecha
     }
 }
