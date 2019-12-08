@@ -1,7 +1,7 @@
-package aceitera.uii;
+package aceitera.uii.administrador;
 
 import aceitera.clases.Proveedor;
-import aceitera.clases.SqlProveedor;
+import aceitera.mysql.CrearProveedor;
 import javax.swing.JOptionPane;
 
 public class CrearProveedorInternal extends javax.swing.JInternalFrame {
@@ -24,6 +24,8 @@ public class CrearProveedorInternal extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         Wallpaper = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
@@ -93,7 +95,7 @@ public class CrearProveedorInternal extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void ok() {
-        SqlProveedor sql = new SqlProveedor();
+        CrearProveedor sql = new CrearProveedor();
         String nombre = txtNombre.getText().trim();                                                                    //Se almacena en variables los valores de los txt
         String direccion = txtDireccion.getText().trim();
         int telefono = 0;

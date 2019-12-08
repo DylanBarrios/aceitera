@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aceitera.uii;
+package aceitera.uii.administrador;
 
 /**
  *
@@ -44,6 +44,8 @@ public class ComprarInternal extends javax.swing.JInternalFrame {
         Wallpaper = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
+        setClosable(true);
+        setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Nuevo Proveedor");

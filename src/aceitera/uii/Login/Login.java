@@ -1,7 +1,9 @@
-package aceitera.uii;
+package aceitera.uii.Login;
 
+import aceitera.uii.trabajador.VentasVendedor;
 import javax.swing.JOptionPane;
 import aceitera.mysql.Conector;
+import aceitera.uii.administrador.Administrador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

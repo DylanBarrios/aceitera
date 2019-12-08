@@ -1,4 +1,4 @@
-package aceitera.uii;
+package aceitera.uii.administrador;
 
 public class Administrador extends javax.swing.JFrame {
 
@@ -129,13 +129,13 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        RegistroInternal registro = new RegistroInternal();
+        CrearUsuarioInternal registro = new CrearUsuarioInternal();
         PanelPrincipal.add(registro);
         registro.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        UsuariosInternal usuarios = new UsuariosInternal();
+        VerUsuariosInternal usuarios = new VerUsuariosInternal();
         PanelPrincipal.add(usuarios);
         usuarios.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -153,7 +153,7 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        ProveedoresInternal proveedores = new ProveedoresInternal();
+        VerProveedoresInternal proveedores = new VerProveedoresInternal();
         PanelPrincipal.add(proveedores);
         proveedores.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed

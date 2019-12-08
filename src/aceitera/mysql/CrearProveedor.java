@@ -1,5 +1,6 @@
-package aceitera.clases;
+package aceitera.mysql;
 
+import aceitera.clases.Proveedor;
 import java.sql.Connection;
 import aceitera.mysql.Conector;
 import java.awt.HeadlessException;
@@ -8,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class SqlProveedor {
+public class CrearProveedor {
 
     public boolean nuevoProveedor(Proveedor proveedor) {
         Conector conector = new Conector();

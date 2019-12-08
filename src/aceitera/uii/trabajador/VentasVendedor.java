@@ -1,4 +1,4 @@
-package aceitera.uii;
+package aceitera.uii.trabajador;
 import aceitera.mysql.Conector;
 import java.sql.Connection;
 

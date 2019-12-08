@@ -2,19 +2,32 @@ package aceitera.clases;
 
 public class Usuarios {
     
-    private int id;
     private String nombre;
     private int telefono;
     private String clave;
     private String usuario;
     private String rango;
+    private String estado;
 
-    public int getId() {
-        return id;
+    public Usuarios(String nombre, int telefono, String clave, String usuario, String rango, String estado) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.clave = clave;
+        this.usuario = usuario;
+        this.rango = rango;
+        this.estado = estado;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Usuarios() {
+    }
+
+    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getNombre() {

@@ -1,12 +1,12 @@
-package aceitera.uii;
+package aceitera.uii.administrador;
 
 import aceitera.mysql.VerUsuarios;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
-public class ProveedoresInternal extends javax.swing.JInternalFrame {
+public class VerProveedoresInternal extends javax.swing.JInternalFrame {
 
-    public ProveedoresInternal() {
+    public VerProveedoresInternal() {
         initComponents();
         mostrar();
     }

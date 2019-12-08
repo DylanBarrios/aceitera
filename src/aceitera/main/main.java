@@ -1,6 +1,7 @@
 package aceitera.main;
-import aceitera.uii.Login;
-import aceitera.uii.Administrador;
+import aceitera.uii.Login.Login;
+import aceitera.uii.administrador.Administrador;
+import aceitera.uii.administrador.InformacionUsuario;
 
 /**
  *

@@ -1,12 +1,12 @@
-package aceitera.uii;
+package aceitera.uii.administrador;
 
-import aceitera.clases.SqlUsuarios;
+import aceitera.mysql.CrearUsuarios;
 import aceitera.clases.Usuarios;
 import javax.swing.JOptionPane;
 
-public class RegistroInternal extends javax.swing.JInternalFrame {
+public class CrearUsuarioInternal extends javax.swing.JInternalFrame {
 
-    public RegistroInternal() {
+    public CrearUsuarioInternal() {
         initComponents();
         agregarItems();
     }
@@ -168,7 +168,7 @@ public class RegistroInternal extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void ok() {
-        SqlUsuarios sql = new SqlUsuarios();
+        CrearUsuarios sql = new CrearUsuarios();
         Usuarios usuarios = new Usuarios();
 
         String nombre = txtNombre.getText();                                    //Se obtienen los datos ingresados y se almacenan en variables
@@ -190,6 +190,7 @@ public class RegistroInternal extends javax.swing.JInternalFrame {
                     usuarios.setUsuario(usuario);
                     usuarios.setClave(clave);
                     usuarios.setRango(rango);
+                    usuarios.setEstado("activo");
                 }
             } else {
                 usuarios.setNombre(nombre);                                            //Se ingresa al objeto usuarios los datos sin el numero de telefono
@@ -197,7 +198,9 @@ public class RegistroInternal extends javax.swing.JInternalFrame {
                 usuarios.setUsuario(usuario);
                 usuarios.setClave(clave);
                 usuarios.setRango(rango);
+                usuarios.setEstado("activo");
             }
+            
             if (sql.registrar(usuarios)) {                                             //Se revisa si todos los campos fueron aceptados
                 JOptionPane.showMessageDialog(null, "Registro exitoso");
                 limpiar();
@@ -212,8 +215,8 @@ public class RegistroInternal extends javax.swing.JInternalFrame {
         comboRangos.addItem("trabajador");
         comboRangos.addItem("invitado");
     }
-    
-    public void limpiar(){
+
+    public void limpiar() {
         txtClave.setText("");
         txtNombre.setText("");
         txtTelefono.setText("");
