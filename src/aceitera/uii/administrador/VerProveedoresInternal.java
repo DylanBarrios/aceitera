@@ -1,19 +1,26 @@
 package aceitera.uii.administrador;
 
+import aceitera.mysql.InformacionProveedorSql;
+import aceitera.mysql.InformacionUsuarioSql;
 import aceitera.mysql.VerUsuarios;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
 public class VerProveedoresInternal extends javax.swing.JInternalFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
+        public static String proveedorSeleccionado = "";
+
     public VerProveedoresInternal() {
         initComponents();
         mostrar();
+        click();
     }
     
     private void mostrar(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        String Consulta = "SELECT * FROM proveedores";                             //Consulta que se hara a la D.B.
+        String Consulta = "SELECT * FROM proveedores";                          //Consulta que se hara a la D.B.
         ResultSet rs = VerUsuarios.getUsuarios(Consulta);
         modelo.setColumnIdentifiers(                                            //Columnas que se llenaran
         new Object[] {
@@ -31,7 +38,7 @@ public class VerProveedoresInternal extends javax.swing.JInternalFrame {
             }
             tableUsuarios.setModel(modelo);
         } catch (Exception e) {
-            System.err.println("Error al llenar tabla de usuarios"+e);
+            System.err.println("Error al llenar tabla de proveedores"+e);
         }
     }
 
@@ -77,4 +84,33 @@ public class VerProveedoresInternal extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tableUsuarios;
     // End of variables declaration//GEN-END:variables
+
+    private void click() {
+        tableUsuarios.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String proveedor;
+                String telefono;
+                String direccion;
+                String estado;
+
+                int fila = tableUsuarios.rowAtPoint(e.getPoint());
+                int columna = 0;
+
+                if (fila > -1) {
+                    proveedorSeleccionado = (String) modelo.getValueAt(fila, columna);
+                    InformacionProveedor informacionProveedor = new InformacionProveedor();
+                    informacionProveedor.setVisible(true);
+                    InformacionProveedorSql proveedorSql = new InformacionProveedorSql(proveedorSeleccionado);
+                    proveedor = proveedorSql.getProveedor();
+                    telefono = proveedorSql.getTelefono();
+                    estado = proveedorSql.getEstado();
+                    direccion = proveedorSql.getDireccion();
+                    
+                    informacionProveedor.llenar(proveedor, telefono, direccion, estado);
+                }
+            }
+        });
+
+    }
 }

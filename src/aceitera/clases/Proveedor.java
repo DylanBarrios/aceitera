@@ -5,11 +5,14 @@ public class Proveedor {
     String Nombre;
     int Telefono;
     String Direccion;
+    String Estado;
 
-    public Proveedor(String Nombre, int Telefono, String Direccion) {
+
+    public Proveedor(String Nombre, int Telefono, String Direccion, String Estado) {
         this.Nombre = Nombre;
         this.Telefono = Telefono;
         this.Direccion = Direccion;
+        this.Estado = Estado;
     }
 
     public String getNombre() {
@@ -36,4 +39,11 @@ public class Proveedor {
         this.Direccion = Direccion;
     }
     
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
 }

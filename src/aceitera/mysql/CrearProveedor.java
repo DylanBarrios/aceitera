@@ -27,12 +27,13 @@ public class CrearProveedor {
                 JOptionPane.showMessageDialog(null, "El proveedor ya existe");                          //Si el proveedor existe avisara al usuario
                 return false;
             }else{
-                sql = "INSERT INTO proveedores (nombre, telefono, direccion)"
-                        + "VALUES (?,?,?)";                                                             //Si el proveedor no existe ingresa los nuevos datos a la D.B. 
+                sql = "INSERT INTO proveedores (nombre, telefono, direccion, estado)"
+                        + "VALUES (?,?,?,?)";                                                             //Si el proveedor no existe ingresa los nuevos datos a la D.B. 
                 pst = connection.prepareStatement(sql);
                 pst.setString(1, proveedor.getNombre());
                 pst.setInt(2, proveedor.getTelefono());
                 pst.setString(3, proveedor.getDireccion());
+                pst.setString(4, proveedor.getEstado());
                 pst.execute();
                 return true;
             }

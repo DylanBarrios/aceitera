@@ -98,23 +98,24 @@ public class CrearProveedorInternal extends javax.swing.JInternalFrame {
         CrearProveedor sql = new CrearProveedor();
         String nombre = txtNombre.getText().trim();                                                                    //Se almacena en variables los valores de los txt
         String direccion = txtDireccion.getText().trim();
+        String estado = "activo";
         int telefono = 0;
 
         if (!"".equals(nombre) && !"".equals(txtTelefono.getText())) {                                          //Se verifica si el nombre y telefono fueron ingresados
             if (txtTelefono.getText().length() == 8) {                                                          //Se verifica si el numero de telefono tiene 8 numeros 
                 telefono = Integer.parseInt(txtTelefono.getText());
-                Proveedor proveedor = new Proveedor(nombre, telefono, direccion);                               //Se crea un nuevo proveedor con los valores de los txt
+                Proveedor proveedor = new Proveedor(nombre, telefono, direccion, estado);                       //Se crea un nuevo proveedor con los valores de los txt
                 if (sql.nuevoProveedor(proveedor)) {                                                            //Se verifica si el proveedor a podido ser registrado 
                     JOptionPane.showMessageDialog(null, "Registro exitoso");
                     limpiar();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al registrarse, contactar con el programador");
+                    JOptionPane.showMessageDialog(null, "Error al registrar, contactar con el programador");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "El numero de telefono debe ser de 8 numeros y sin espacios");               //Muestra mensaje si el numero de telefono esta mal ingresado
             }
         } else if (!"".equals(nombre)) {                                                                        //Revisa si solo el nombre fue ingresado sin importar telefono ni direccion
-            Proveedor proveedor = new Proveedor(nombre, telefono, direccion);                                          //Se crea un nuevo proveedor con los valores de los txt
+            Proveedor proveedor = new Proveedor(nombre, telefono, direccion, estado);                                          //Se crea un nuevo proveedor con los valores de los txt
             if (sql.nuevoProveedor(proveedor)) {                                                                //Se verifica si el proveedor a podido ser registrado 
                 JOptionPane.showMessageDialog(null, "Registro exitoso");
                 limpiar();
