@@ -12,6 +12,7 @@ public class Administrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         PanelPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -20,12 +21,19 @@ public class Administrador extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem9.setText("jMenuItem9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +76,9 @@ public class Administrador extends javax.swing.JFrame {
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoMas.png"))); // NOI18N
         jMenu3.setText("Más");
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/grupo-de-usuarios.png"))); // NOI18N
+        jMenu4.setText("Usuarios");
+
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoCrearUsuario.png"))); // NOI18N
         jMenuItem5.setText("Crear Usuario");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +86,7 @@ public class Administrador extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu4.add(jMenuItem5);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoVerUsuarios.png"))); // NOI18N
         jMenuItem4.setText("Ver usuarios");
@@ -84,7 +95,12 @@ public class Administrador extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        jMenu4.add(jMenuItem4);
+
+        jMenu3.add(jMenu4);
+
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/equipo.png"))); // NOI18N
+        jMenu5.setText("Proveedores");
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoCrearUsuario.png"))); // NOI18N
         jMenuItem8.setText("Agregar Proveedor");
@@ -93,7 +109,7 @@ public class Administrador extends javax.swing.JFrame {
                 jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
+        jMenu5.add(jMenuItem8);
 
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoVerUsuarios.png"))); // NOI18N
         jMenuItem7.setText("Ver Proveedores");
@@ -102,7 +118,32 @@ public class Administrador extends javax.swing.JFrame {
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        jMenu5.add(jMenuItem7);
+
+        jMenu3.add(jMenu5);
+
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/producto.png"))); // NOI18N
+        jMenu6.setText("Productos");
+
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/IconoNuevoProducto.png"))); // NOI18N
+        jMenuItem11.setText("Agregar Producto");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem11);
+
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/caja.png"))); // NOI18N
+        jMenuItem10.setText("Listado De Productos");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
+        jMenu3.add(jMenu6);
 
         jMenuBar1.add(jMenu3);
 
@@ -158,13 +199,30 @@ public class Administrador extends javax.swing.JFrame {
         proveedores.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        CrearProductoInternal CrearProducto = new CrearProductoInternal();
+        PanelPrincipal.add(CrearProducto);
+        CrearProducto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        VerProductos verProductos = new VerProductos();
+        PanelPrincipal.add(verProductos);
+        verProductos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane PanelPrincipal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -172,5 +230,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }

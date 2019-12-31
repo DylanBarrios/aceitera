@@ -1,21 +1,16 @@
 package aceitera.main;
 import aceitera.uii.Login.Login;
 import aceitera.uii.administrador.Administrador;
-import aceitera.uii.administrador.InformacionUsuario;
+import aceitera.uii.trabajador.VentasVendedor;
 
-/**
- *
- * @author dylan
- */
 public class main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 //        Login login = new Login();
 //        login.setVisible(true);
-        Administrador admin = new Administrador();
-        admin.setVisible(true);
+        Administrador adm = new Administrador();
+        adm.setVisible(true);
+//        VentasVendedor vv = new VentasVendedor();
+//        vv.setVisible(true);
     }    
 }

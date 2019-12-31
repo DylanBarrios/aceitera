@@ -136,5 +136,4 @@ public class InformacionProveedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error, verifique los datos");
         }
     }
-
 }
