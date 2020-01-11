@@ -10,9 +10,8 @@ import java.sql.ResultSet;
 
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    public static String usuario;
+
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -103,28 +102,34 @@ public class Login extends javax.swing.JFrame {
             String clave = txtClave.getText();                                                                          //Almacena la clave en una variable
             try {
                 Connection connection = conector.getConnection();
-                String sql = "SELECT rango,estado FROM usuarios where usuario = '"+usuario
-                        +"' and clave = '"+clave+"'";                                                                   //Consulta a la D.B. para ver si el usuario y clave exiten
-                
+                String sql = "SELECT rango,estado FROM usuarios where usuario = '" + usuario
+                        + "' and clave = '" + clave + "'";                                                                   //Consulta a la D.B. para ver si el usuario y clave exiten
+
                 PreparedStatement pst = connection.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     String rango = rs.getString("rango");                                                               //Almacena el rango en una variable
                     String estado = rs.getString("estado");                                                             //Almacena el estado en una variable
-                    if(rango.equals("administrador") && estado.equals("activo")){                                       //Verifica si el usuario esta acteivo y si es adminsitrador
+                    if (rango.equals("administrador") && estado.equals("activo")) {                                       //Verifica si el usuario esta acteivo y si es adminsitrador
+                        guardarRegistro();                                                                              //Se guarda el nombre del que se registro 
                         dispose();                                                                                      //Esconde el login
                         new Administrador().setVisible(true);                                                           //Muestra ventana de administrador
-                    }else if((rango.equals("trabajador") || rango.equals("invitado")) && estado.equals("activo")){      //Verifica si el usuario esta activo y si es trabajador o invitado
+                    } else if ((rango.equals("trabajador") || rango.equals("invitado")) && estado.equals("activo")) {      //Verifica si el usuario esta activo y si es trabajador o invitado
+                        guardarRegistro();                                                                              //Se guarda el nombre del que se registro 
                         dispose();
                         new VentasVendedor().setVisible(true);
+                    } else if (estado.equals("inactivo")) {
+                        JOptionPane.showMessageDialog(null, "Su usuario esta desactivado");
+                        txtUsuario.setText("");
+                        txtClave.setText("");
                     }
-                }else{                                                                                                  //Si no existe el usuario muestra un mensaje
+                } else {                                                                                                  //Si no existe el usuario muestra un mensaje
                     JOptionPane.showMessageDialog(null, "Falló la autenticacion");
                     txtUsuario.setText("");
                     txtClave.setText("");
                 }
             } catch (Exception e) {
-                System.out.println("Error en login "+e);
+                System.out.println("Error en login " + e);
             }
 
         } else {                                                                                                        //Si un campo esta vacio muestra un mensaje
@@ -142,4 +147,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public void guardarRegistro() {
+        usuario = txtUsuario.getText();
+    }
 }

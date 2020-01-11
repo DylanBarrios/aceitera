@@ -1,7 +1,7 @@
 package aceitera.uii.administrador;
 
 import aceitera.clases.Producto;
-import aceitera.mysql.NuevoProducto;
+import aceitera.mysql.NuevoProductoSql;
 import aceitera.mysql.VerUsuarios;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +32,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         cbxProveedor = new javax.swing.JComboBox<>();
         txtOk = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtNotas = new javax.swing.JTextArea();
+        AreaNotas = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         Wallpaper = new javax.swing.JLabel();
 
@@ -124,10 +124,10 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         });
         getContentPane().add(txtOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 150, 70));
 
-        txtNotas.setColumns(20);
-        txtNotas.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
-        txtNotas.setRows(5);
-        jScrollPane1.setViewportView(txtNotas);
+        AreaNotas.setColumns(20);
+        AreaNotas.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        AreaNotas.setRows(5);
+        jScrollPane1.setViewportView(AreaNotas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 250, 100));
 
@@ -185,6 +185,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea AreaNotas;
     private javax.swing.JLabel Wallpaper;
     private javax.swing.JComboBox<String> cbxProveedor;
     private javax.swing.JLabel jLabel1;
@@ -197,7 +198,6 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextArea txtNotas;
     private javax.swing.JButton txtOk;
     private javax.swing.JTextField txtPrecioCompra;
     private javax.swing.JTextField txtPrecioVenta;
@@ -215,12 +215,13 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
             String vendedor = (String) cbxProveedor.getSelectedItem();
             int telefono = Integer.parseInt(txtTelefono.getText());
             int precioCompra = Integer.parseInt(txtPrecioCompra.getText());
-            String notas = txtNotas.getText();
+            String notas = AreaNotas.getText();
 
             Producto producto = new Producto(nombreProducto, precioVenta, cantidad, vendedor, telefono, precioCompra, notas);
-            NuevoProducto nuevoProducto = new NuevoProducto();
+            NuevoProductoSql nuevoProducto = new NuevoProductoSql();
             if (nuevoProducto.NuevoProducto(producto)) {
                 JOptionPane.showMessageDialog(null, "Registro exitoso");
+                limpiar();
             }
         }
     }
@@ -251,6 +252,14 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
             System.err.println("Error al obtener el telefono del proveedor" + e);
         }
         return 0;
+    }
+    
+    public void limpiar(){
+        txtNombre.setText("");
+        txtCantidad.setText("");
+        txtPrecioCompra.setText("");
+        txtPrecioVenta.setText("");
+        AreaNotas.setText("");
     }
 
 }

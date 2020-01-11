@@ -1,5 +1,8 @@
 package aceitera.uii.administrador;
 
+import aceitera.uii.Login.Login;
+import aceitera.uii.trabajador.VentasVendedor;
+
 public class Administrador extends javax.swing.JFrame {
 
     public Administrador() {
@@ -13,11 +16,11 @@ public class Administrador extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jButton1 = new javax.swing.JButton();
         PanelPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -36,8 +39,22 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem9.setText("jMenuItem9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/logoutVenta.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 0, 50, 40));
 
         PanelPrincipal.setBackground(new java.awt.Color(54, 2, 90));
+        getContentPane().add(PanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 746));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoVentanas.png"))); // NOI18N
         jMenu1.setText("Ventanas");
@@ -51,16 +68,6 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem2);
-
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoComprar.png"))); // NOI18N
-        jMenuItem6.setText("Comprar");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -149,24 +156,13 @@ public class Administrador extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1369, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        VentasInternal ventas = new VentasInternal();
-        PanelPrincipal.add(ventas);
-        ventas.setVisible(true);
+        VentasVendedor ventas = new VentasVendedor();
+        this.dispose();
+        ventas.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -180,12 +176,6 @@ public class Administrador extends javax.swing.JFrame {
         PanelPrincipal.add(usuarios);
         usuarios.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        ComprarInternal comprar = new ComprarInternal();
-        PanelPrincipal.add(comprar);
-        comprar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         CrearProveedorInternal proveedor = new CrearProveedorInternal();
@@ -211,8 +201,15 @@ public class Administrador extends javax.swing.JFrame {
         verProductos.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Login login = new Login();
+        login.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane PanelPrincipal;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -227,7 +224,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;

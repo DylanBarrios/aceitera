@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class NuevoProducto {
+public class NuevoProductoSql {
       
      public boolean NuevoProducto(Producto producto) {
         Conector conector = new Conector();
