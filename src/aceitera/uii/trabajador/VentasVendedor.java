@@ -3,12 +3,15 @@ package aceitera.uii.trabajador;
 import aceitera.clases.Ventas;
 import aceitera.mysql.Conector;
 import aceitera.mysql.InformacionProductoSql;
+import aceitera.mysql.InformacionProveedorSql;
 import aceitera.mysql.NuevaVentaSql;
 import aceitera.mysql.VerUsuarios;
 import aceitera.uii.Login.Login;
 import aceitera.uii.administrador.Administrador;
 import aceitera.uii.administrador.InformacionProducto;
+import aceitera.uii.administrador.InformacionProveedor;
 import static aceitera.uii.administrador.VerProductos.usuarioSeleccionado;
+import static aceitera.uii.administrador.VerProveedoresInternal.proveedorSeleccionado;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -37,6 +40,7 @@ public class VentasVendedor extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         AutoCompleteDecorator.decorate(cbxProductos);
         agregarVentasTabla();
+        clickProdutos();
     }
 
     @SuppressWarnings("unchecked")
@@ -294,7 +298,9 @@ public class VentasVendedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay nada agregado");
         } else if (txtPago.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe escribir el pago recibido");
-        } else {
+        } else if(Integer.parseInt(txtPago.getText()) < Integer.parseInt(LabelTotal.getText())) {
+            JOptionPane.showMessageDialog(null, "Es no alcanza");
+        } else{
             int Vuelto = Integer.parseInt(txtPago.getText()) - Total;
             JOptionPane.showMessageDialog(null, "EL vuelto es: " + Vuelto);
             agregarVentasDB();
@@ -353,34 +359,26 @@ public class VentasVendedor extends javax.swing.JFrame {
         tableProducto.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String NombreProducto;
-                int PrecioVenta;
-                int ExistenciaProducto;
-                String Vendedor;
-                int Telefono;
-                int PrecioCompra;
-                String Notas;
-
-                int fila = tableProducto.rowAtPoint(e.getPoint());
-                int columna = 0;
-
-                if (fila > -1) {
-                    usuarioSeleccionado = (String) modeloProductos.getValueAt(fila, columna);
-                    InformacionProducto informacionProducto = new InformacionProducto();
-                    informacionProducto.setVisible(true);
-                    InformacionProductoSql productoSql = new InformacionProductoSql(usuarioSeleccionado);
-                    NombreProducto = productoSql.getNombreProducto();
-                    PrecioVenta = productoSql.getPrecioVenta();
-                    ExistenciaProducto = productoSql.getExistenciaProducto();
-                    Vendedor = productoSql.getVendedor();
-                    Telefono = productoSql.getTelefono();
-                    PrecioCompra = productoSql.getPrecioCompra();
-                    Notas = productoSql.getNotas();
-                    informacionProducto.llenar(NombreProducto, PrecioVenta, ExistenciaProducto, Vendedor, Telefono, PrecioCompra, Notas);
+                int opcion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el producto?");           //Se guarda la seleccion del usuario en un int
+                if(opcion==JOptionPane.YES_OPTION){                                                         //Se evalua si selecciono si
+                    int fila = tableProducto.getSelectedRow();                                              //Se guarda la fila selecionada en un int
+                    if(fila>=0){
+                        JOptionPane.showMessageDialog(null, "Eliminado");
+                        modeloProductos.removeRow(fila);                                                    //Se elimina la fila del modelo de la tabla porductos
+                    }
                 }
             }
         });
 
+    }
+    
+    private void clickVentas() {
+        tableProducto.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                    int fila = tableProducto.getSelectedRow();
+            }
+        });
     }
 
     private void clickComboProductos() {
