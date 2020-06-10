@@ -2,14 +2,14 @@ package aceitera.clases;
 
 public class Producto {
     String nombreProducto;
-    int precioVenta;
+    Double precioVenta;
     int cantidad;
     String vendedor;
     int telefono;
-    int precioCompra;
+    Double precioCompra;
     String notas;
 
-    public Producto(String nombreProducto, int precioVenta, int cantidad, String vendedor, int telefono, int precioCompra, String notas) {
+    public Producto(String nombreProducto, Double precioVenta, int cantidad, String vendedor, int telefono, Double precioCompra, String notas) {
         this.nombreProducto = nombreProducto;
         this.precioVenta = precioVenta;
         this.cantidad = cantidad;
@@ -27,11 +27,11 @@ public class Producto {
         this.nombreProducto = nombreProducto;
     }
 
-    public int getPrecioVenta() {
+    public Double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(int precioVenta) {
+    public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
@@ -59,11 +59,11 @@ public class Producto {
         this.telefono = telefono;
     }
 
-    public int getPrecioCompra() {
+    public Double getPrecioCompra() {
         return precioCompra;
     }
 
-    public void setPrecioCompra(int precioCompra) {
+    public void setPrecioCompra(Double precioCompra) {
         this.precioCompra = precioCompra;
     }
 

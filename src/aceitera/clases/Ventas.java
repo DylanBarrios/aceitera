@@ -6,11 +6,11 @@ public class Ventas {
     
     String nombreProducto;
     int cantidad;
-    int total;
+    Double total;
     String vendedor;
-    Timestamp fecha;
+    String fecha;
 
-    public Ventas(String nombreProducto, int cantidad, int total, String vendedor, Timestamp fecha) {
+    public Ventas(String nombreProducto, int cantidad, Double total, String vendedor, String fecha) {
         this.nombreProducto = nombreProducto;
         this.cantidad = cantidad;
         this.total = total;
@@ -34,11 +34,11 @@ public class Ventas {
         this.cantidad = cantidad;
     }
 
-    public int getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
@@ -50,11 +50,11 @@ public class Ventas {
         this.vendedor = vendedor;
     }
 
-    public Timestamp getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Timestamp fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
     

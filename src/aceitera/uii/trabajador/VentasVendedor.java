@@ -2,23 +2,17 @@ package aceitera.uii.trabajador;
 
 import aceitera.clases.Ventas;
 import aceitera.mysql.Conector;
-import aceitera.mysql.InformacionProductoSql;
-import aceitera.mysql.InformacionProveedorSql;
 import aceitera.mysql.NuevaVentaSql;
 import aceitera.mysql.VerUsuarios;
 import aceitera.uii.Login.Login;
 import aceitera.uii.administrador.Administrador;
-import aceitera.uii.administrador.InformacionProducto;
-import aceitera.uii.administrador.InformacionProveedor;
-import static aceitera.uii.administrador.VerProductos.usuarioSeleccionado;
-import static aceitera.uii.administrador.VerProveedoresInternal.proveedorSeleccionado;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -30,7 +24,7 @@ public class VentasVendedor extends javax.swing.JFrame {
     Conector con;
     DefaultTableModel modeloProductos;
     DefaultTableModel modeloVenta;
-    int Total = 0;
+    Double Total = 0.0;
     String usuarioRegistrado = Login.usuario;
 
     public VentasVendedor() {
@@ -40,7 +34,9 @@ public class VentasVendedor extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         AutoCompleteDecorator.decorate(cbxProductos);
         agregarVentasTabla();
+        ventaTotaDial();
         clickProdutos();
+        clickVentas();
     }
 
     @SuppressWarnings("unchecked")
@@ -69,6 +65,7 @@ public class VentasVendedor extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         WallpaperCenter = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         WallpaperGeneral = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,28 +77,28 @@ public class VentasVendedor extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
         jLabel2.setText("Venta del dia:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 414, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("Precio u:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 90, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(254, 254, 254));
         jLabel5.setText("Cantidad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 90, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 180, 90, -1));
 
         jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("Total:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 60, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 260, 60, -1));
 
         txtPrecioU.setEditable(false);
         txtPrecioU.setBackground(new java.awt.Color(1, 1, 1));
         txtPrecioU.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPrecioU.setForeground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(txtPrecioU, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 300, 40));
+        getContentPane().add(txtPrecioU, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 100, 300, 40));
 
         txtCantidad.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtCantidad.setForeground(new java.awt.Color(1, 1, 1));
@@ -123,22 +120,27 @@ public class VentasVendedor extends javax.swing.JFrame {
                 txtCantidadKeyReleased(evt);
             }
         });
-        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 300, 40));
+        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 170, 300, 40));
 
         txtTotal.setEditable(false);
         txtTotal.setBackground(new java.awt.Color(1, 1, 1));
         txtTotal.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(254, 254, 254));
         txtTotal.setSelectionColor(new java.awt.Color(0, 158, 255));
-        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, 300, 40));
+        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 250, 300, 40));
 
-        btnVender.setText("Vender");
+        btnVender.setBackground(new java.awt.Color(0, 0, 0));
+        btnVender.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        btnVender.setForeground(new java.awt.Color(255, 255, 255));
+        btnVender.setText("VENDER");
+        btnVender.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnVender.setBorderPainted(false);
         btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVenderActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, 130, 50));
+        getContentPane().add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 320, 130, 50));
 
         txtPago.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPago.setForeground(new java.awt.Color(1, 1, 1));
@@ -147,12 +149,12 @@ public class VentasVendedor extends javax.swing.JFrame {
                 txtPagoKeyReleased(evt);
             }
         });
-        getContentPane().add(txtPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 410, 110, 30));
+        getContentPane().add(txtPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 410, 110, 30));
 
         jLabel8.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
         jLabel8.setText("Pago:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 410, 60, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 410, 60, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(45, 0, 169));
         jScrollPane1.setForeground(new java.awt.Color(254, 254, 254));
@@ -170,7 +172,7 @@ public class VentasVendedor extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableVentas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 540, 390));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 390));
 
         tableProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,12 +187,12 @@ public class VentasVendedor extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableProducto);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 460, 390));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, 630, 390));
 
         jLabel9.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(254, 254, 254));
         jLabel9.setText("Producto:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 90, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 90, -1));
 
         cbxProductos.setEditable(true);
         cbxProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -198,33 +200,37 @@ public class VentasVendedor extends javax.swing.JFrame {
                 cbxProductosActionPerformed(evt);
             }
         });
-        getContentPane().add(cbxProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 300, 40));
+        getContentPane().add(cbxProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 300, 40));
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
         jLabel1.setText("Venta Total:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 410, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 415, -1, -1));
 
         labelVentaDia.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         labelVentaDia.setForeground(new java.awt.Color(254, 254, 254));
         labelVentaDia.setText("0");
-        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 80, 30));
+        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 415, 110, 30));
 
         LabelTotal.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         LabelTotal.setForeground(new java.awt.Color(254, 254, 254));
         LabelTotal.setText("0");
-        getContentPane().add(LabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 410, 70, 30));
+        getContentPane().add(LabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 415, 100, 30));
 
-        btnAgregar.setText("Agregar");
+        btnAgregar.setBackground(new java.awt.Color(0, 0, 0));
+        btnAgregar.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.setBorder(null);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, 130, 50));
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 320, 130, 50));
 
         WallpaperCenter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/fondoRegistro.jpg"))); // NOI18N
-        getContentPane().add(WallpaperCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 690, 390));
+        getContentPane().add(WallpaperCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 690, 390));
 
         jButton1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -237,10 +243,21 @@ public class VentasVendedor extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 410, 110, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 110, 50));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoRecargar.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 70, 40));
 
         WallpaperGeneral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/fondoAzul.jpg"))); // NOI18N
-        getContentPane().add(WallpaperGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1460, 460));
+        getContentPane().add(WallpaperGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1830, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -259,10 +276,10 @@ public class VentasVendedor extends javax.swing.JFrame {
 
     private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
         try {
-            if (txtCantidad.getText().equals("")) {
+            if (txtCantidad.getText().equals("") || txtCantidad.getText().equals("No hay en existencia")) {
                 txtTotal.setText("0");
             } else {
-                int precioU = Integer.parseInt(txtPrecioU.getText());
+                Double precioU = Double.parseDouble(txtPrecioU.getText());
                 int cantidad = Integer.parseInt(txtCantidad.getText());
                 String total = String.valueOf(precioU * cantidad);
                 txtTotal.setText(total);
@@ -277,8 +294,8 @@ public class VentasVendedor extends javax.swing.JFrame {
             if (txtPago.getText().equals("")) {
 
             } else {
-                int pago = Integer.parseInt(txtPago.getText());
-                int total = Integer.parseInt(txtTotal.getText());
+                Double pago = Double.parseDouble(txtPago.getText());
+                Double total = Double.parseDouble(txtTotal.getText());
                 String vuelto = String.valueOf(pago - total);
             }
         } catch (NumberFormatException e) {
@@ -298,10 +315,10 @@ public class VentasVendedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay nada agregado");
         } else if (txtPago.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe escribir el pago recibido");
-        } else if(Integer.parseInt(txtPago.getText()) < Integer.parseInt(LabelTotal.getText())) {
+        } else if (Double.parseDouble(txtPago.getText()) < Double.parseDouble(LabelTotal.getText())) {
             JOptionPane.showMessageDialog(null, "Es no alcanza");
-        } else{
-            int Vuelto = Integer.parseInt(txtPago.getText()) - Total;
+        } else {
+            Double Vuelto = Double.parseDouble(txtPago.getText()) - Total;
             JOptionPane.showMessageDialog(null, "EL vuelto es: " + Vuelto);
             agregarVentasDB();
             limpiarTxt();
@@ -309,12 +326,19 @@ public class VentasVendedor extends javax.swing.JFrame {
             limpiarTablaProductos();
             limpiarTablaVentas();
             agregarVentasTabla();
+            ventaTotaDial();
         }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         salir();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        limpiarTablaVentas();
+        agregarVentasTabla();
+        ventaTotaDial();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelTotal;
@@ -324,6 +348,7 @@ public class VentasVendedor extends javax.swing.JFrame {
     private javax.swing.JButton btnVender;
     private javax.swing.JComboBox<String> cbxProductos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -360,23 +385,51 @@ public class VentasVendedor extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int opcion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el producto?");           //Se guarda la seleccion del usuario en un int
-                if(opcion==JOptionPane.YES_OPTION){                                                         //Se evalua si selecciono si
+                if (opcion == JOptionPane.YES_OPTION) {                                                         //Se evalua si selecciono si
                     int fila = tableProducto.getSelectedRow();                                              //Se guarda la fila selecionada en un int
-                    if(fila>=0){
+                    if (fila >= 0) {
                         JOptionPane.showMessageDialog(null, "Eliminado");
                         modeloProductos.removeRow(fila);                                                    //Se elimina la fila del modelo de la tabla porductos
+                        ventaTotal();
                     }
                 }
             }
         });
 
     }
-    
+
     private void clickVentas() {
-        tableProducto.addMouseListener(new MouseAdapter() {
+        tableVentas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                    int fila = tableProducto.getSelectedRow();
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY-MM-dd");
+                Conector conector = new Conector();
+                String sql;
+                PreparedStatement pst;
+                ResultSet rs;
+                String producto = null;
+                int id = 0;
+                int cantidadComprada;
+                Double totalCobrado;
+                int fila = tableVentas.getSelectedRow();
+                String fecha = String.valueOf(modeloVenta.getValueAt(fila, 3));
+
+                try {
+                    sql = "SELECT * FROM ventas WHERE fecha  LIKE '" + fecha + "%'";
+                    Connection connection = conector.getConnection();
+                    pst = connection.prepareStatement(sql);
+                    rs = pst.executeQuery();
+                    while (rs.next()) {
+                        id = rs.getInt("idVentas");
+                        producto = rs.getString("nombreProducto");
+                        cantidadComprada = rs.getInt("cantidad");
+                        totalCobrado = rs.getDouble("total");
+                        Devolucion d = new Devolucion(id, cantidadComprada, producto, totalCobrado);
+                        d.setVisible(true);
+                    }
+                } catch (SQLException err) {
+                    System.out.println("Error al devolver " + err);
+                }
             }
         });
     }
@@ -389,13 +442,12 @@ public class VentasVendedor extends javax.swing.JFrame {
             ResultSet rs = VerUsuarios.getUsuarios(Consulta);
             if (rs.next()) {
                 if (rs.getInt("existenciaProducto") == 0) {
-                    txtPrecioU.setText("0");
-                    JOptionPane.showMessageDialog(null, "No hay en existencia");
+                    txtPrecioU.setText("No hay en existencia");
                 } else {
                     txtPrecioU.setText(rs.getString("precioVenta"));
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al dar click en combo " + e);
         }
     }
@@ -407,14 +459,15 @@ public class VentasVendedor extends javax.swing.JFrame {
     }
 
     private void titulos() {
-        String titulos[] = new String[]{"Producto", "Cantidad", "Sub Total"};
+        String titulosVenta[] = new String[]{"Producto", "Cantidad", "Sub Total", "Fecha"};
+        String titulosProductos[] = new String[]{"Producto", "Cantidad", "Sub Total"};
 
         modeloProductos = new DefaultTableModel();
-        modeloProductos.setColumnIdentifiers(titulos);
+        modeloProductos.setColumnIdentifiers(titulosProductos);
         tableProducto.setModel(modeloProductos);
 
         modeloVenta = new DefaultTableModel();
-        modeloVenta.setColumnIdentifiers(titulos);
+        modeloVenta.setColumnIdentifiers(titulosVenta);
         tableVentas.setModel(modeloVenta);
     }
 
@@ -440,18 +493,27 @@ public class VentasVendedor extends javax.swing.JFrame {
 
     private void ventaTotal() {
         int filas = modeloProductos.getRowCount();
-        Total = 0;
+        Total = 0.0;
         for (int i = 0; i < filas; i++) {
-            Total = Total + Integer.parseInt(modeloProductos.getValueAt(i, 2).toString());
+            Total = Total + Double.parseDouble(modeloProductos.getValueAt(i, 2).toString());
         }
         LabelTotal.setText(String.valueOf(Total));
+    }
+    
+    private void ventaTotaDial() {
+        int filas = modeloVenta.getRowCount();
+        Total = 0.0;
+        for (int i = 0; i < filas; i++) {
+            Total = Total + Double.parseDouble(modeloVenta.getValueAt(i, 2).toString());
+        }
+        labelVentaDia.setText(String.valueOf(Total));
     }
 
     private void ventaDia() {
         int filas = modeloVenta.getRowCount();
-        int TotalDia = 0;
+        Double TotalDia = 0.0;
         for (int i = 0; i < filas; i++) {
-            TotalDia = TotalDia + Integer.parseInt(modeloProductos.getValueAt(i, 2).toString());
+            TotalDia = TotalDia + Double.parseDouble(modeloProductos.getValueAt(i, 2).toString());
         }
         labelVentaDia.setText(String.valueOf(TotalDia));
     }
@@ -459,13 +521,15 @@ public class VentasVendedor extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void agregarVentasDB() {
         int filas = modeloProductos.getRowCount();
-        int columnas = modeloProductos.getColumnCount();
         for (int i = 0; i < filas; i++) {
             String producto = String.valueOf(modeloProductos.getValueAt(i, 0));;
             int cantidad = Integer.parseInt(String.valueOf(modeloProductos.getValueAt(i, 1)));
-            int subTotal = Integer.parseInt(String.valueOf(modeloProductos.getValueAt(i, 2)));
-            Timestamp fecha = new Timestamp(System.currentTimeMillis());
-            Ventas ventas = new Ventas(producto, cantidad, subTotal, usuarioRegistrado, fecha);
+            Double subTotal = Double.parseDouble(String.valueOf(modeloProductos.getValueAt(i, 2)));
+            Date fechaActual = new Date();
+            DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+            DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+            String horaFecha = formatoFecha.format(fechaActual) +" " +formatoHora.format(fechaActual);
+            Ventas ventas = new Ventas(producto, cantidad, subTotal, usuarioRegistrado, horaFecha);
             NuevaVentaSql nuevaVenta = new NuevaVentaSql();
             nuevaVenta.nuevaVenta(ventas);
             nuevaVenta.nuevaCantidad(cantidad, producto);
@@ -482,10 +546,11 @@ public class VentasVendedor extends javax.swing.JFrame {
         ResultSet rs;
         String producto;
         int cantidad;
-        int subTotal;
+        Double subTotal;
+        String fechaVenta;
 
         try {
-            sql = "SELECT * FROM ventas WHERE fecha  LIKE '" + formatoFecha.format(fecha) + "%'";           //SQL para saber si el proveedor ya existe
+            sql = "SELECT * FROM ventas WHERE fecha  LIKE '" + formatoFecha.format(fecha) + "%'";           //SQL 
             Connection connection = conector.getConnection();
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -493,10 +558,11 @@ public class VentasVendedor extends javax.swing.JFrame {
             while (rs.next()) {
                 producto = rs.getString("nombreProducto");
                 cantidad = rs.getInt("cantidad");
-                subTotal = rs.getInt("total");
+                subTotal = rs.getDouble("total");
+                fechaVenta = rs.getString("fecha");
 
                 modeloVenta.addRow(new Object[]{
-                    producto, cantidad, subTotal
+                    producto, cantidad, subTotal, fechaVenta
                 });
             }
         } catch (SQLException e) {
@@ -534,10 +600,8 @@ public class VentasVendedor extends javax.swing.JFrame {
             subVenta();                                                                             //Obtiene el total del producto vendido
             ventaTotal();                                                                           //Suma todos los totales de la columna subtotal
             limpiarTxt();                                                                           //Limpia todo para elegir un nuevo producto
-        }else{
-            JOptionPane.showMessageDialog(null, "Solo hay "+cantidad+" "+producto);
+        } else {
+            JOptionPane.showMessageDialog(null, "Solo hay " + cantidad + " " + producto);
         }
-        
     }
-
 }

@@ -161,42 +161,56 @@ public class Administrador extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         VentasVendedor ventas = new VentasVendedor();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
         this.dispose();
         ventas.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         CrearUsuarioInternal registro = new CrearUsuarioInternal();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
         PanelPrincipal.add(registro);
         registro.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         VerUsuariosInternal usuarios = new VerUsuariosInternal();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
         PanelPrincipal.add(usuarios);
         usuarios.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         CrearProveedorInternal proveedor = new CrearProveedorInternal();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
         PanelPrincipal.add(proveedor);
         proveedor.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         VerProveedoresInternal proveedores = new VerProveedoresInternal();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
         PanelPrincipal.add(proveedores);
         proveedores.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         CrearProductoInternal CrearProducto = new CrearProductoInternal();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
         PanelPrincipal.add(CrearProducto);
         CrearProducto.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         VerProductos verProductos = new VerProductos();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
         PanelPrincipal.add(verProductos);
         verProductos.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
@@ -228,4 +242,10 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
+
+    public void ver(){
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
+        
+    }
 }

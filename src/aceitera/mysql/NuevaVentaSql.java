@@ -23,12 +23,12 @@ public class NuevaVentaSql {
             pst = connection.prepareStatement(sql);
             pst.setString(1, venta.getNombreProducto());
             pst.setInt(2, venta.getCantidad());
-            pst.setInt(3, venta.getTotal());
+            pst.setDouble(3, venta.getTotal());
             pst.setString(4, venta.getVendedor());
-            pst.setTimestamp(5, venta.getFecha());
+            pst.setString(5, venta.getFecha());
             pst.execute();                                                                                              
         } catch (HeadlessException | SQLException e) {
-            System.out.println("Erro al cargar nueva venta " + e);
+            System.out.println("Error al cargar nueva venta " + e);
         }
     }
 
@@ -83,7 +83,7 @@ public class NuevaVentaSql {
                 enExistencia = rs.getInt("existenciaProducto");
             }    
             int nuevaCantidad = enExistencia - vendido;
-            sql = " UPDATE productos SET existenciaProducto = '" + vendido                                                   //Se actualiza la nueva cantidad de producto ahora en
+            sql = " UPDATE productos SET existenciaProducto = '" + nuevaCantidad                                                   //Se actualiza la nueva cantidad de producto ahora en
                     + "' WHERE nombreProducto = '" + Producto + "'";                                                         //existencia
             pst = connection.prepareStatement(sql);
             pst.execute();

@@ -210,11 +210,11 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No puede dejar ningun espacio vacio");
         } else {
             String nombreProducto = txtNombre.getText();
-            int precioVenta = Integer.parseInt(txtPrecioVenta.getText());
+            Double precioVenta = Double.valueOf(txtPrecioVenta.getText());
             int cantidad = Integer.parseInt(txtCantidad.getText());
             String vendedor = (String) cbxProveedor.getSelectedItem();
             int telefono = Integer.parseInt(txtTelefono.getText());
-            int precioCompra = Integer.parseInt(txtPrecioCompra.getText());
+            Double precioCompra = Double.parseDouble(txtPrecioCompra.getText());
             String notas = AreaNotas.getText();
 
             Producto producto = new Producto(nombreProducto, precioVenta, cantidad, vendedor, telefono, precioCompra, notas);

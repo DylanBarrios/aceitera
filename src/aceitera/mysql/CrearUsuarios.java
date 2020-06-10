@@ -36,7 +36,7 @@ public class CrearUsuarios extends Conector {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error " + e);
+            System.out.println("Error al crear usuario" + e);
         }
         return false;
     }

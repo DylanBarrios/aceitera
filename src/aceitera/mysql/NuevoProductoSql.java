@@ -31,11 +31,11 @@ public class NuevoProductoSql {
                         + "VALUES (?,?,?,?,?,?,?)";                                                             //Si el proveedor no existe ingresa los nuevos datos a la D.B. 
                 pst = connection.prepareStatement(sql);
                 pst.setString(1, producto.getNombreProducto());
-                pst.setInt(2, producto.getPrecioVenta());
+                pst.setDouble(2, producto.getPrecioVenta());
                 pst.setInt(3, producto.getCantidad());
                 pst.setString(4, producto.getVendedor());
                 pst.setInt(5, producto.getTelefono());
-                pst.setInt(6, producto.getPrecioCompra());
+                pst.setDouble(6, producto.getPrecioCompra());
                 pst.setString(7, producto.getNotas());
                 pst.execute();
                 return true;

@@ -11,13 +11,13 @@ import javax.swing.SpinnerNumberModel;
  */
 public class Devolucion extends javax.swing.JFrame {
     private int cantidadComprada=0;
-    private int costo=0;
-    private int costoUnitario=0;
+    private Double costo;
+    private Double costoUnitario;
     private int id;
     private int cantidadDevuelta;
     private String producto;
             
-    public Devolucion(int id, int cantidadComprada, String producto, int costo) {
+    public Devolucion(int id, int cantidadComprada, String producto, Double costo) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cantidadComprada = cantidadComprada;
@@ -148,7 +148,7 @@ public class Devolucion extends javax.swing.JFrame {
     
     private void actualizar() {
         VentaSql ventaSql = new VentaSql();
-        int nuevoCosto = costo - (cantidadDevuelta*costoUnitario);
+        Double nuevoCosto = costo - (cantidadDevuelta*costoUnitario);
         int nuevaCantidad = cantidadComprada - cantidadDevuelta;
         if (ventaSql.actualizarTablaVentas(id,nuevaCantidad,nuevoCosto) && ventaSql.actualizarTablaProductos(producto, cantidadDevuelta)) {                                                                       //Se revisa si todos los campos fueron aceptados
             JOptionPane.showMessageDialog(null, "Devolucion correcta");

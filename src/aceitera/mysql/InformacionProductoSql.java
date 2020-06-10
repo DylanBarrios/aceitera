@@ -8,11 +8,11 @@ import java.sql.SQLException;
 public class InformacionProductoSql {
 
     String NombreProducto;
-    int PrecioVenta;
+    Double PrecioVenta;
     int ExistenciaProducto;
     String Vendedor;
     int Telefono;
-    int PrecioCompra;
+    Double PrecioCompra;
     String Notas;
 
     public InformacionProductoSql(String Producto) {
@@ -31,11 +31,11 @@ public class InformacionProductoSql {
 
             if (rs.next()) {
                 NombreProducto = rs.getString("nombreProducto");
-                PrecioVenta = rs.getInt("precioVenta");
+                PrecioVenta = rs.getDouble("precioVenta");
                 ExistenciaProducto = rs.getInt("existenciaProducto");
                 Vendedor = rs.getString("vendedor");
                 Telefono = rs.getInt("telefono");
-                PrecioCompra = rs.getInt("precioCompra");
+                PrecioCompra = rs.getDouble("precioCompra");
                 Notas = rs.getString("notas");
             }
 
@@ -52,11 +52,11 @@ public class InformacionProductoSql {
         this.NombreProducto = NombreProducto;
     }
 
-    public int getPrecioVenta() {
+    public Double getPrecioVenta() {
         return PrecioVenta;
     }
 
-    public void setPrecioVenta(int PrecioVenta) {
+    public void setPrecioVenta(Double PrecioVenta) {
         this.PrecioVenta = PrecioVenta;
     }
 
@@ -84,11 +84,11 @@ public class InformacionProductoSql {
         this.Telefono = Telefono;
     }
 
-    public int getPrecioCompra() {
+    public Double getPrecioCompra() {
         return PrecioCompra;
     }
 
-    public void setPrecioCompra(int PrecioCompra) {
+    public void setPrecioCompra(Double PrecioCompra) {
         this.PrecioCompra = PrecioCompra;
     }
 

@@ -9,7 +9,7 @@ public class Conector {
     private static Connection connection;
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
-    private static final String password = "password";
+    private static final String password = "00";
     private static final String url = "jdbc:mysql://localhost:3306/aceitera";
 
     public Conector() {

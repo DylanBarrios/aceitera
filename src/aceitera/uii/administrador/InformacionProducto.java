@@ -1,5 +1,10 @@
 package aceitera.uii.administrador;
 
+import aceitera.clases.Producto;
+import aceitera.mysql.ActualizarProducto;
+import aceitera.mysql.ActualizarProveedor;
+import javax.swing.JOptionPane;
+
 public class InformacionProducto extends javax.swing.JFrame {
 
     public InformacionProducto() {
@@ -81,6 +86,11 @@ public class InformacionProducto extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Actualizar");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(254, 254, 254)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 140, 50));
 
         txtExistencia.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -105,6 +115,10 @@ public class InformacionProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        actualizar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaNotas;
     private javax.swing.JButton jButton1;
@@ -126,7 +140,7 @@ public class InformacionProducto extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    public void llenar(String NombreProducto, int PrecioVenta, int ExistenciaProducto, String Vendedor, int Telefono, int PrecioCompra, String Notas){
+    public void llenar(String NombreProducto, Double PrecioVenta, int ExistenciaProducto, String Vendedor, int Telefono, Double PrecioCompra, String Notas){
         txtProducto.setText(NombreProducto);
         txtPrecioCompra.setText(String.valueOf(PrecioCompra));
         txtExistencia.setText(String.valueOf(ExistenciaProducto));
@@ -134,5 +148,24 @@ public class InformacionProducto extends javax.swing.JFrame {
         txtTelefono.setText(String.valueOf(Telefono));
         txtPrecioVenta.setText(String.valueOf(PrecioVenta));
         areaNotas.setText(Notas);
+    }
+    
+     private void actualizar() {
+        ActualizarProducto sql = new ActualizarProducto();
+        String producto = txtProducto.getText();
+        String proveedor = txtProveedor.getText();
+        Double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
+        Double precioCompra = Double.parseDouble(txtPrecioCompra.getText());
+        int telefono = Integer.parseInt(txtTelefono.getText());
+        int existencia = Integer.parseInt(txtExistencia.getText());
+        String notas = areaNotas.getText();
+        
+        Producto NuevoProducto = new Producto(producto,precioVenta,existencia,proveedor,telefono,precioCompra,notas);                    //Se crea un nuevo usuario con los datos modificados
+        if (sql.actualizar(NuevoProducto)) {                                                                       //Se revisa si todos los campos fueron aceptados
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error, verifique los datos");
+        }
     }
 }

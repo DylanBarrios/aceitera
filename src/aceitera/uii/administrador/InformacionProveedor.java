@@ -125,7 +125,12 @@ public class InformacionProveedor extends javax.swing.JFrame {
         ActualizarProveedor sql = new ActualizarProveedor();
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
-        int telefono = Integer.parseInt(txtTelefono.getText());
+        int telefono;
+        if(txtTelefono.getText().equals("")){
+            telefono = 0;
+        }else{
+        telefono = Integer.parseInt(txtTelefono.getText());
+        }
         String estado = cbxEstado.getSelectedItem().toString();
 
         Proveedor NuevoProveedor = new Proveedor(nombre, telefono, direccion, estado);                    //Se crea un nuevo usuario con los datos modificados
