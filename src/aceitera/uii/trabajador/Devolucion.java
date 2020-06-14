@@ -1,6 +1,6 @@
 package aceitera.uii.trabajador;
 
-import aceitera.mysql.VentaSql;
+import aceitera.mysql.DevolucionSql;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -16,14 +16,16 @@ public class Devolucion extends javax.swing.JFrame {
     private int id;
     private int cantidadDevuelta;
     private String producto;
+    private String usuarioDevuelve;
             
-    public Devolucion(int id, int cantidadComprada, String producto, Double costo) {
+    public Devolucion(int id, int cantidadComprada, String producto, Double costo, String usuarioDevuelve) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cantidadComprada = cantidadComprada;
         this.costo = costo;
         this.id = id;
         this.producto = producto;
+        this.usuarioDevuelve = usuarioDevuelve;
         costoUnitario = costo / cantidadComprada;
         configuracion();
         
@@ -147,10 +149,10 @@ public class Devolucion extends javax.swing.JFrame {
     }
     
     private void actualizar() {
-        VentaSql ventaSql = new VentaSql();
+        DevolucionSql ventaSql = new DevolucionSql();
         Double nuevoCosto = costo - (cantidadDevuelta*costoUnitario);
         int nuevaCantidad = cantidadComprada - cantidadDevuelta;
-        if (ventaSql.actualizarTablaVentas(id,nuevaCantidad,nuevoCosto) && ventaSql.actualizarTablaProductos(producto, cantidadDevuelta)) {                                                                       //Se revisa si todos los campos fueron aceptados
+        if (ventaSql.actualizarTablaVentas(id,nuevaCantidad,nuevoCosto,usuarioDevuelve,cantidadDevuelta) && ventaSql.actualizarTablaProductos(producto, cantidadDevuelta)) {                                                                       //Se revisa si todos los campos fueron aceptados
             JOptionPane.showMessageDialog(null, "Devolucion correcta");
             this.setVisible(false);
         } else {
