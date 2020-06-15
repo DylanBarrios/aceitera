@@ -75,7 +75,12 @@ public class Administrador extends javax.swing.JFrame {
         jMenu2.setText("Reportes");
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoNuevoReporte.png"))); // NOI18N
-        jMenuItem3.setText("Generar Reporte");
+        jMenuItem3.setText("Reporte Por  Dia");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -220,6 +225,14 @@ public class Administrador extends javax.swing.JFrame {
         Login login = new Login();
         login.show();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        ReporteVentaDiaria rvd = new ReporteVentaDiaria();
+        PanelPrincipal.removeAll();
+        PanelPrincipal.repaint();
+        PanelPrincipal.add(rvd);
+        rvd.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane PanelPrincipal;
