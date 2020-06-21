@@ -75,7 +75,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu2.setText("Reportes");
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoNuevoReporte.png"))); // NOI18N
-        jMenuItem3.setText("Reporte Por  Dia");
+        jMenuItem3.setText("Generar Reporte");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -147,7 +147,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu6.add(jMenuItem11);
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/caja.png"))); // NOI18N
-        jMenuItem10.setText("Listado De Productos");
+        jMenuItem10.setText("Ver Productos");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);

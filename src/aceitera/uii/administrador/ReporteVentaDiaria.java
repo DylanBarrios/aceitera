@@ -60,13 +60,17 @@ public class ReporteVentaDiaria extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1260, 560));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoReporteNuevo.png"))); // NOI18N
         jButton1.setText("Generar");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 5, -1, -1));
 
         jLabel3.setText("Venta Total");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 610, -1, -1));
@@ -109,13 +113,6 @@ public class ReporteVentaDiaria extends javax.swing.JInternalFrame {
             System.out.println("Error al obtener fecha "+e);
         }
 
-//        if (jdcFechaFin.getDate().equals("") || jdcFechaInicio.getDate().equals("")) {
-//            JOptionPane.showMessageDialog(null, "Seleccione las fechas");
-//        } else {
-//            limpiarTablaVentas();
-//            agregarVentasTabla();
-//            ventaTotaDial();
-//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

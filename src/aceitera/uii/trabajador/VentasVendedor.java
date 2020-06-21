@@ -77,28 +77,28 @@ public class VentasVendedor extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
         jLabel2.setText("Venta del dia:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 414, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 415, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("Precio u:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 90, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(254, 254, 254));
         jLabel5.setText("Cantidad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 90, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 90, -1));
 
         jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("Total:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 60, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 60, -1));
 
         txtPrecioU.setEditable(false);
         txtPrecioU.setBackground(new java.awt.Color(1, 1, 1));
         txtPrecioU.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPrecioU.setForeground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(txtPrecioU, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 300, 40));
+        getContentPane().add(txtPrecioU, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 100, 300, 40));
 
         txtCantidad.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtCantidad.setForeground(new java.awt.Color(1, 1, 1));
@@ -120,14 +120,14 @@ public class VentasVendedor extends javax.swing.JFrame {
                 txtCantidadKeyReleased(evt);
             }
         });
-        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 300, 40));
+        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, 300, 40));
 
         txtTotal.setEditable(false);
         txtTotal.setBackground(new java.awt.Color(1, 1, 1));
         txtTotal.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(254, 254, 254));
         txtTotal.setSelectionColor(new java.awt.Color(0, 158, 255));
-        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 250, 300, 40));
+        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 250, 300, 40));
 
         btnVender.setBackground(new java.awt.Color(0, 0, 0));
         btnVender.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
@@ -140,7 +140,7 @@ public class VentasVendedor extends javax.swing.JFrame {
                 btnVenderActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 130, 50));
+        getContentPane().add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 130, 50));
 
         txtPago.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPago.setForeground(new java.awt.Color(1, 1, 1));
@@ -149,50 +149,50 @@ public class VentasVendedor extends javax.swing.JFrame {
                 txtPagoKeyReleased(evt);
             }
         });
-        getContentPane().add(txtPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 410, 110, 30));
+        getContentPane().add(txtPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 415, 130, 30));
 
         jLabel8.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
         jLabel8.setText("Pago:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 410, 60, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 415, 60, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(45, 0, 169));
         jScrollPane1.setForeground(new java.awt.Color(254, 254, 254));
 
         tableVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Producto", "Cantidad", "Total"
+                "Producto", "Cantidad", "Sub Total", "Fecha"
             }
         ));
         jScrollPane1.setViewportView(tableVentas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 590, 390));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 390));
 
         tableProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Producto", "Cantidad", "Sub Total"
+                "Producto", "Cantidad", "Sub Total", "Fecha"
             }
         ));
         jScrollPane2.setViewportView(tableProducto);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 10, 770, 390));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 10, 690, 390));
 
         jLabel9.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(254, 254, 254));
         jLabel9.setText("Producto:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 90, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 90, -1));
 
         cbxProductos.setEditable(true);
         cbxProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -200,22 +200,22 @@ public class VentasVendedor extends javax.swing.JFrame {
                 cbxProductosActionPerformed(evt);
             }
         });
-        getContentPane().add(cbxProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 300, 40));
+        getContentPane().add(cbxProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 300, 40));
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("Venta Total:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 415, -1, -1));
+        jLabel1.setText("Total compra:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1575, 415, -1, -1));
 
         labelVentaDia.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         labelVentaDia.setForeground(new java.awt.Color(254, 254, 254));
         labelVentaDia.setText("0");
-        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 415, 110, 30));
+        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 415, 110, 30));
 
         LabelTotal.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         LabelTotal.setForeground(new java.awt.Color(254, 254, 254));
         LabelTotal.setText("0");
-        getContentPane().add(LabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 415, 100, 30));
+        getContentPane().add(LabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1703, 415, 100, 30));
 
         btnAgregar.setBackground(new java.awt.Color(0, 0, 0));
         btnAgregar.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
@@ -227,15 +227,16 @@ public class VentasVendedor extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 320, 130, 50));
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 320, 130, 50));
 
         WallpaperCenter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/fondoRegistro.jpg"))); // NOI18N
-        getContentPane().add(WallpaperCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 690, 390));
+        getContentPane().add(WallpaperCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 690, 390));
 
         jButton1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/logoutVenta.png"))); // NOI18N
         jButton1.setText("SALIR");
+        jButton1.setToolTipText("Salir del programa");
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -243,9 +244,10 @@ public class VentasVendedor extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 110, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 408, 110, 50));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoRecargar.png"))); // NOI18N
+        jButton2.setToolTipText("Actualizar venta del dia");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
