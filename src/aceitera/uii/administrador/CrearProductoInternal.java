@@ -220,7 +220,6 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
             Producto producto = new Producto(nombreProducto, precioVenta, cantidad, vendedor, telefono, precioCompra, notas);
             NuevoProductoSql nuevoProducto = new NuevoProductoSql();
             if (nuevoProducto.NuevoProducto(producto)) {
-                JOptionPane.showMessageDialog(null, "Registro exitoso");
                 limpiar();
             }
         }

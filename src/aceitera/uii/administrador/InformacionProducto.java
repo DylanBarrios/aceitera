@@ -3,12 +3,16 @@ package aceitera.uii.administrador;
 import aceitera.clases.Producto;
 import aceitera.mysql.ActualizarProducto;
 import aceitera.mysql.ActualizarProveedor;
+import aceitera.mysql.VerUsuarios;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class InformacionProducto extends javax.swing.JFrame {
 
     public InformacionProducto() {
         initComponents();
+        proveedorItems();
         this.setLocationRelativeTo(null);
     }
 
@@ -28,10 +32,10 @@ public class InformacionProducto extends javax.swing.JFrame {
         txtPrecioCompra = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         txtExistencia = new javax.swing.JTextField();
-        txtProveedor = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         areaNotas = new javax.swing.JTextArea();
+        cbxProveedor = new javax.swing.JComboBox<>();
         wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -96,9 +100,6 @@ public class InformacionProducto extends javax.swing.JFrame {
         txtExistencia.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         getContentPane().add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 230, -1));
 
-        txtProveedor.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        getContentPane().add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 220, -1));
-
         txtTelefono.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 220, -1));
 
@@ -108,6 +109,13 @@ public class InformacionProducto extends javax.swing.JFrame {
         jScrollPane1.setViewportView(areaNotas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, 90));
+
+        cbxProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxProveedorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbxProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 42, 220, 35));
 
         wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/FondoAzul.png"))); // NOI18N
         getContentPane().add(wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 330));
@@ -119,8 +127,14 @@ public class InformacionProducto extends javax.swing.JFrame {
         actualizar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cbxProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProveedorActionPerformed
+        int telefono = telefonoProveedor();
+        txtTelefono.setText(String.valueOf(telefono));
+    }//GEN-LAST:event_cbxProveedorActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaNotas;
+    private javax.swing.JComboBox<String> cbxProveedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -134,38 +148,64 @@ public class InformacionProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecioCompra;
     private javax.swing.JTextField txtPrecioVenta;
     private javax.swing.JTextField txtProducto;
-    private javax.swing.JTextField txtProveedor;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JLabel wallpaper;
     // End of variables declaration//GEN-END:variables
 
-
-    public void llenar(String NombreProducto, Double PrecioVenta, int ExistenciaProducto, String Vendedor, int Telefono, Double PrecioCompra, String Notas){
+    public void llenar(String NombreProducto, Double PrecioVenta, int ExistenciaProducto, String Vendedor, int Telefono, Double PrecioCompra, String Notas) {
         txtProducto.setText(NombreProducto);
         txtPrecioCompra.setText(String.valueOf(PrecioCompra));
         txtExistencia.setText(String.valueOf(ExistenciaProducto));
-        txtProveedor.setText(Vendedor);
+        cbxProveedor.setSelectedItem(Vendedor);
         txtTelefono.setText(String.valueOf(Telefono));
         txtPrecioVenta.setText(String.valueOf(PrecioVenta));
         areaNotas.setText(Notas);
     }
-    
-     private void actualizar() {
+
+    private void actualizar() {
         ActualizarProducto sql = new ActualizarProducto();
         String producto = txtProducto.getText();
-        String proveedor = txtProveedor.getText();
+        String proveedor = cbxProveedor.getSelectedItem().toString();
         Double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
         Double precioCompra = Double.parseDouble(txtPrecioCompra.getText());
         int telefono = Integer.parseInt(txtTelefono.getText());
         int existencia = Integer.parseInt(txtExistencia.getText());
         String notas = areaNotas.getText();
-        
-        Producto NuevoProducto = new Producto(producto,precioVenta,existencia,proveedor,telefono,precioCompra,notas);                    //Se crea un nuevo usuario con los datos modificados
+
+        Producto NuevoProducto = new Producto(producto, precioVenta, existencia, proveedor, telefono, precioCompra, notas);                    //Se crea un nuevo usuario con los datos modificados
         if (sql.actualizar(NuevoProducto)) {                                                                       //Se revisa si todos los campos fueron aceptados
             JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
             this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Error, verifique los datos");
         }
+    }
+
+    public void proveedorItems() {
+        String Consulta = "SELECT nombre FROM proveedores WHERE estado = 'activo'";                             //Consulta que se hara a la D.B.
+        ResultSet rs = VerUsuarios.getUsuarios(Consulta);
+        try {
+            while (rs.next()) {
+                String proveedor = rs.getString("nombre");
+                cbxProveedor.addItem(proveedor);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al obtener proveedores" + e);
+        }
+    }
+
+    public int telefonoProveedor() {
+        String proveedor = cbxProveedor.getSelectedItem().toString();
+        String Consulta = "SELECT telefono FROM proveedores WHERE nombre = '"
+                + proveedor + "'";                                              //Consulta que se hara a la D.B.
+        ResultSet rs = VerUsuarios.getUsuarios(Consulta);
+        try {
+            if (rs.next()) {
+                return rs.getInt("telefono");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el telefono del proveedor" + e);
+        }
+        return 0;
     }
 }

@@ -59,7 +59,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoVentanas.png"))); // NOI18N
         jMenu1.setText("Ventanas");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoVentas.png"))); // NOI18N
         jMenuItem2.setText("Vender");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -168,54 +168,41 @@ public class Administrador extends javax.swing.JFrame {
         VentasVendedor ventas = new VentasVendedor();
         PanelPrincipal.removeAll();
         PanelPrincipal.repaint();
-        this.dispose();
         ventas.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         CrearUsuarioInternal registro = new CrearUsuarioInternal();
-        PanelPrincipal.removeAll();
-        PanelPrincipal.repaint();
         PanelPrincipal.add(registro);
         registro.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         VerUsuariosInternal usuarios = new VerUsuariosInternal();
-        PanelPrincipal.removeAll();
-        PanelPrincipal.repaint();
         PanelPrincipal.add(usuarios);
         usuarios.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         CrearProveedorInternal proveedor = new CrearProveedorInternal();
-        PanelPrincipal.removeAll();
-        PanelPrincipal.repaint();
         PanelPrincipal.add(proveedor);
         proveedor.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         VerProveedoresInternal proveedores = new VerProveedoresInternal();
-        PanelPrincipal.removeAll();
-        PanelPrincipal.repaint();
         PanelPrincipal.add(proveedores);
         proveedores.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         CrearProductoInternal CrearProducto = new CrearProductoInternal();
-        PanelPrincipal.removeAll();
-        PanelPrincipal.repaint();
         PanelPrincipal.add(CrearProducto);
         CrearProducto.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         VerProductos verProductos = new VerProductos();
-        PanelPrincipal.removeAll();
-        PanelPrincipal.repaint();
         PanelPrincipal.add(verProductos);
         verProductos.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
@@ -228,14 +215,12 @@ public class Administrador extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         ReporteVentaDiaria rvd = new ReporteVentaDiaria();
-        PanelPrincipal.removeAll();
-        PanelPrincipal.repaint();
         PanelPrincipal.add(rvd);
         rvd.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane PanelPrincipal;
+    public static javax.swing.JDesktopPane PanelPrincipal;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
