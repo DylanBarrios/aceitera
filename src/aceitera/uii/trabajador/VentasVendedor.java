@@ -440,12 +440,8 @@ public class VentasVendedor extends javax.swing.JFrame {
         limpiarTxt();
         String producto = cbxProductos.getSelectedItem().toString();
         try {
-            Conector conector = new Conector();
-            Connection connection = conector.getConnection();
-            String Consulta = "SELECT precioVenta, existenciaProducto FROM productos WHERE nombreProducto = ?";               //Consulta que se hara a la D.B. para obtener el precio y cantidad producto
-            PreparedStatement pst = connection.prepareStatement(Consulta);
-            pst.setString(1, Consulta);
-            ResultSet rs = pst.executeQuery();
+            String Consulta = "SELECT precioVenta, existenciaProducto FROM productos WHERE nombreProducto ='" + producto + "'";               //Consulta que se hara a la D.B. para obtener el precio y cantidad producto
+            ResultSet rs = VerUsuarios.getUsuarios(Consulta);
             if (rs.next()) {
                 if (rs.getInt("existenciaProducto") == 0) {
                     txtPrecioU.setText("No hay en existencia");
