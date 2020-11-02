@@ -372,7 +372,7 @@ public class VentasVendedor extends javax.swing.JFrame {
     public void LlenarCbx() {
         DefaultTableModel modelo = new DefaultTableModel();
         try {
-            String Consulta = "SELECT nombreProducto FROM productos";        //Consulta que se hara a la D.B. para obtener el nombre del producto
+            String Consulta = "SELECT nombreProducto FROM productos ORDER BY nombreProducto";        //Consulta que se hara a la D.B. para obtener el nombre del producto
             ResultSet rs = VerUsuarios.getUsuarios(Consulta);
             while (rs.next()) {
                 cbxProductos.addItem(rs.getString("nombreProducto"));
@@ -440,8 +440,12 @@ public class VentasVendedor extends javax.swing.JFrame {
         limpiarTxt();
         String producto = cbxProductos.getSelectedItem().toString();
         try {
-            String Consulta = "SELECT precioVenta, existenciaProducto FROM productos WHERE nombreProducto ='" + producto + "'";               //Consulta que se hara a la D.B. para obtener el precio y cantidad producto
-            ResultSet rs = VerUsuarios.getUsuarios(Consulta);
+            Conector conector = new Conector();
+            Connection connection = conector.getConnection();
+            String Consulta = "SELECT precioVenta, existenciaProducto FROM productos WHERE nombreProducto = ?";               //Consulta que se hara a la D.B. para obtener el precio y cantidad producto
+            PreparedStatement pst = connection.prepareStatement(Consulta);
+            pst.setString(1, Consulta);
+            ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 if (rs.getInt("existenciaProducto") == 0) {
                     txtPrecioU.setText("No hay en existencia");
