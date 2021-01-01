@@ -9,7 +9,8 @@ public class Conector {
     private static Connection connection;
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
-    private static final String password = "AceiteraSerigrafia";
+    private static final String password = "00";
+    //AceiteraSerigrafia
     private static final String url = "jdbc:mysql://localhost:3306/aceitera";
 
     public Conector() {
@@ -22,7 +23,7 @@ public class Conector {
         }
     }
     
-    public Connection getConnection(){
+    public static Connection getConnection(){
         return connection;
     }
     

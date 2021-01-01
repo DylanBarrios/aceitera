@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -43,7 +42,6 @@ public class VentasVendedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -59,11 +57,11 @@ public class VentasVendedor extends javax.swing.JFrame {
         tableProducto = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         cbxProductos = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         labelVentaDia = new javax.swing.JLabel();
         LabelTotal = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         WallpaperCenter = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         WallpaperGeneral = new javax.swing.JLabel();
@@ -74,31 +72,26 @@ public class VentasVendedor extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setText("Venta del dia:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 415, -1, -1));
-
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("Precio u:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 90, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(254, 254, 254));
         jLabel5.setText("Cantidad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 90, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 260, 90, -1));
 
         jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("Total:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 60, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 340, 60, -1));
 
         txtPrecioU.setEditable(false);
         txtPrecioU.setBackground(new java.awt.Color(1, 1, 1));
         txtPrecioU.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPrecioU.setForeground(new java.awt.Color(254, 254, 254));
-        getContentPane().add(txtPrecioU, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 100, 300, 40));
+        getContentPane().add(txtPrecioU, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 180, 300, 40));
 
         txtCantidad.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtCantidad.setForeground(new java.awt.Color(1, 1, 1));
@@ -120,14 +113,14 @@ public class VentasVendedor extends javax.swing.JFrame {
                 txtCantidadKeyReleased(evt);
             }
         });
-        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, 300, 40));
+        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 250, 300, 40));
 
         txtTotal.setEditable(false);
         txtTotal.setBackground(new java.awt.Color(1, 1, 1));
         txtTotal.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(254, 254, 254));
         txtTotal.setSelectionColor(new java.awt.Color(0, 158, 255));
-        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 250, 300, 40));
+        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, 300, 40));
 
         btnVender.setBackground(new java.awt.Color(0, 0, 0));
         btnVender.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
@@ -140,7 +133,7 @@ public class VentasVendedor extends javax.swing.JFrame {
                 btnVenderActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 130, 50));
+        getContentPane().add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 400, 130, 50));
 
         txtPago.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPago.setForeground(new java.awt.Color(1, 1, 1));
@@ -149,16 +142,17 @@ public class VentasVendedor extends javax.swing.JFrame {
                 txtPagoKeyReleased(evt);
             }
         });
-        getContentPane().add(txtPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 415, 130, 30));
+        getContentPane().add(txtPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 600, 130, 30));
 
         jLabel8.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
         jLabel8.setText("Pago:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 415, 60, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 60, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(45, 0, 169));
         jScrollPane1.setForeground(new java.awt.Color(254, 254, 254));
 
+        tableVentas.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         tableVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -172,8 +166,9 @@ public class VentasVendedor extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableVentas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 390));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 800, 570));
 
+        tableProducto.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         tableProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -187,12 +182,12 @@ public class VentasVendedor extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableProducto);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 10, 690, 390));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 10, 670, 570));
 
         jLabel9.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(254, 254, 254));
         jLabel9.setText("Producto:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 90, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, 90, -1));
 
         cbxProductos.setEditable(true);
         cbxProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -200,22 +195,17 @@ public class VentasVendedor extends javax.swing.JFrame {
                 cbxProductosActionPerformed(evt);
             }
         });
-        getContentPane().add(cbxProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 300, 40));
-
-        jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("Total compra:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1575, 415, -1, -1));
+        getContentPane().add(cbxProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 110, 300, 40));
 
         labelVentaDia.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         labelVentaDia.setForeground(new java.awt.Color(254, 254, 254));
         labelVentaDia.setText("0");
-        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 415, 110, 30));
+        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 590, 110, 30));
 
         LabelTotal.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         LabelTotal.setForeground(new java.awt.Color(254, 254, 254));
         LabelTotal.setText("0");
-        getContentPane().add(LabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1703, 415, 100, 30));
+        getContentPane().add(LabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1810, 590, 100, 30));
 
         btnAgregar.setBackground(new java.awt.Color(0, 0, 0));
         btnAgregar.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
@@ -227,10 +217,15 @@ public class VentasVendedor extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 320, 130, 50));
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 400, 130, 50));
 
         WallpaperCenter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/fondoRegistro.jpg"))); // NOI18N
-        getContentPane().add(WallpaperCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 690, 390));
+        getContentPane().add(WallpaperCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 690, 500));
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("jLabel1");
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(811, 5, 440, 580));
 
         jButton1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -244,7 +239,7 @@ public class VentasVendedor extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 408, 110, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 590, 110, 50));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoRecargar.png"))); // NOI18N
         jButton2.setToolTipText("Actualizar venta del dia");
@@ -256,10 +251,10 @@ public class VentasVendedor extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 70, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 70, 40));
 
         WallpaperGeneral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/fondoAzul.jpg"))); // NOI18N
-        getContentPane().add(WallpaperGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1830, 460));
+        getContentPane().add(WallpaperGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -315,13 +310,14 @@ public class VentasVendedor extends javax.swing.JFrame {
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         if (modeloProductos.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "No hay nada agregado");
-        } else if (txtPago.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Debe escribir el pago recibido");
-        } else if (Double.parseDouble(txtPago.getText()) < Double.parseDouble(LabelTotal.getText())) {
-            JOptionPane.showMessageDialog(null, "Es no alcanza");
         } else {
-            Double Vuelto = Double.parseDouble(txtPago.getText()) - Total;
-            JOptionPane.showMessageDialog(null, "EL vuelto es: " + Vuelto);
+            Double Vuelto;
+            if (txtPago.getText().equals("")) {
+                Vuelto = 0.0;
+            } else {
+                Vuelto = Double.parseDouble(txtPago.getText()) - Total;
+                JOptionPane.showMessageDialog(null, "EL vuelto es: " + Vuelto);
+            }
             agregarVentasDB();
             limpiarTxt();
             LabelTotal.setText("0");
@@ -352,7 +348,6 @@ public class VentasVendedor extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -372,7 +367,7 @@ public class VentasVendedor extends javax.swing.JFrame {
     public void LlenarCbx() {
         DefaultTableModel modelo = new DefaultTableModel();
         try {
-            String Consulta = "SELECT nombreProducto FROM productos ORDER BY nombreProducto";        //Consulta que se hara a la D.B. para obtener el nombre del producto
+            String Consulta = "SELECT nombreProducto FROM productos ORDER BY nombreProducto";        //Consulta que se hara a la D.B. para obtener el nombre del producto ordenado por nombre
             ResultSet rs = VerUsuarios.getUsuarios(Consulta);
             while (rs.next()) {
                 cbxProductos.addItem(rs.getString("nombreProducto"));
@@ -426,7 +421,7 @@ public class VentasVendedor extends javax.swing.JFrame {
                         producto = rs.getString("nombreProducto");
                         cantidadComprada = rs.getInt("cantidad");
                         totalCobrado = rs.getDouble("total");
-                        Devolucion d = new Devolucion(id, cantidadComprada, producto, totalCobrado,usuarioRegistrado);
+                        Devolucion d = new Devolucion(id, cantidadComprada, producto, totalCobrado, usuarioRegistrado);
                         d.setVisible(true);
                     }
                 } catch (SQLException err) {
@@ -505,7 +500,7 @@ public class VentasVendedor extends javax.swing.JFrame {
         }
         LabelTotal.setText(String.valueOf(Total));
     }
-    
+
     private void ventaTotaDial() {
         int filas = modeloVenta.getRowCount();
         Total = 0.0;
@@ -541,7 +536,7 @@ public class VentasVendedor extends javax.swing.JFrame {
 
     private void agregarVentasTabla() {
         Date fecha = new Date();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 
         Conector conector = new Conector();
         String sql;

@@ -96,7 +96,7 @@ public class ReporteVentaDiaria extends javax.swing.JInternalFrame {
             } else if (mesFin == mesInicio) {
                 int diaFin = jdcFechaFin.getCalendar().get(Calendar.DAY_OF_MONTH);
                 int diaInicio = jdcFechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH);
-                System.out.println(diaFin);
+                System.out.println("INICIO"+diaInicio+" FIN"+ diaFin);
                 if (diaFin > diaInicio) {
                     limpiarTablaVentas();
                     agregarVentasTabla();
@@ -150,7 +150,7 @@ public class ReporteVentaDiaria extends javax.swing.JInternalFrame {
         String sql;
         PreparedStatement pst;
         ResultSet rs;
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
         String fechaInicio = formatoFecha.format(jdcFechaInicio.getDate());
         String fechaFin = formatoFecha.format(jdcFechaFin.getDate());
 

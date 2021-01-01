@@ -96,16 +96,16 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void Validacion() {
-        if (!txtClave.getText().equals("") || !txtUsuario.getText().equals("")) {                                       //Verificar si los campos no estan vacios
-            Conector conector = new Conector();
+        if (!txtClave.getText().equals("") && !txtUsuario.getText().equals("")) {                                       //Verificar si los campos no estan vacios
             String usuario = txtUsuario.getText();                                                                      //Almacena el usuario en una variable
+            System.out.println("Usuario "+usuario);
             String clave = txtClave.getText();                                                                          //Almacena la clave en una variable
             try {
-                Connection connection = conector.getConnection();
-                String sql = "SELECT rango,estado FROM usuarios where usuario = '" + usuario
-                        + "' and clave = '" + clave + "'";                                                                   //Consulta a la D.B. para ver si el usuario y clave exiten
+                String sql = "SELECT rango, estado FROM usuarios where usuario = BINARY ? and clave = BINARY ?";                                                                   //Consulta a la D.B. para ver si el usuario y clave exiten
 
-                PreparedStatement pst = connection.prepareStatement(sql);
+                PreparedStatement pst = Conector.getConnection().prepareStatement(sql);
+                pst.setString(1, usuario);
+                pst.setString(2, clave);
                 ResultSet rs = pst.executeQuery();
                 if (rs.next()) {
                     String rango = rs.getString("rango");                                                               //Almacena el rango en una variable
