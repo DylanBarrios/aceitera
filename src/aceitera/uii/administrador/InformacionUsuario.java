@@ -67,27 +67,27 @@ public class InformacionUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, -1));
 
         txtUsuario.setBackground(new java.awt.Color(1, 1, 1));
-        txtUsuario.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtUsuario.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 300, 40));
 
         txtTelefono.setBackground(new java.awt.Color(1, 1, 1));
-        txtTelefono.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 300, 40));
 
         txtClave.setBackground(new java.awt.Color(1, 1, 1));
-        txtClave.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtClave.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtClave.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 300, 40));
 
         txtNombre.setBackground(new java.awt.Color(1, 1, 1));
-        txtNombre.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 300, 40));
 
         cbxRango.setBackground(new java.awt.Color(1, 1, 1));
-        cbxRango.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        cbxRango.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         cbxRango.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(cbxRango, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 300, 40));
 

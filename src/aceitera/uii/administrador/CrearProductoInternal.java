@@ -2,7 +2,8 @@ package aceitera.uii.administrador;
 
 import aceitera.clases.Producto;
 import aceitera.mysql.NuevoProductoSql;
-import aceitera.mysql.VerUsuarios;
+import aceitera.mysql.Busqueda;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -45,7 +46,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         jLabel2.setText("Nombre Producto:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
-        txtNombre.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 470, -1));
 
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
@@ -73,7 +74,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         jLabel6.setText("Precio De Venta:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
-        txtPrecioCompra.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtPrecioCompra.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPrecioCompra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrecioCompraKeyTyped(evt);
@@ -81,7 +82,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         });
         getContentPane().add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 470, -1));
 
-        txtCantidad.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtCantidad.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyTyped(evt);
@@ -92,7 +93,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         });
         getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 470, -1));
 
-        txtPrecioVenta.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtPrecioVenta.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtPrecioVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrecioVentaKeyTyped(evt);
@@ -101,10 +102,10 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         getContentPane().add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 470, -1));
 
         txtTelefono.setEditable(false);
-        txtTelefono.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 160, -1));
 
-        cbxProveedor.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        cbxProveedor.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         cbxProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxProveedorActionPerformed(evt);
@@ -125,7 +126,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         getContentPane().add(txtOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 150, 70));
 
         AreaNotas.setColumns(20);
-        AreaNotas.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        AreaNotas.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         AreaNotas.setRows(5);
         jScrollPane1.setViewportView(AreaNotas);
 
@@ -227,7 +228,7 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
 
     public void proveedorItems() {
         String Consulta = "SELECT nombre FROM proveedores WHERE estado = 'activo'";                             //Consulta que se hara a la D.B.
-        ResultSet rs = VerUsuarios.getUsuarios(Consulta);
+        ResultSet rs = Busqueda.getResultset(Consulta);
         try {
             while (rs.next()) {
                 String proveedor = rs.getString("nombre");
@@ -238,12 +239,13 @@ public class CrearProductoInternal extends javax.swing.JInternalFrame {
         }
     }
 
-    public int telefonoProveedor() {
+    public int telefonoProveedor(){
         String proveedor = cbxProveedor.getSelectedItem().toString();
-        String Consulta = "SELECT telefono FROM proveedores WHERE nombre = '"
-                + proveedor + "'";                                              //Consulta que se hara a la D.B.
-        ResultSet rs = VerUsuarios.getUsuarios(Consulta);
+        String Consulta = "SELECT telefono FROM proveedores WHERE nombre = ?";                                              //Consulta que se hara a la D.B.
         try {
+        PreparedStatement pst = Busqueda.getStatement(Consulta);
+        pst.setString(1, proveedor);
+        ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 return rs.getInt("telefono");
             }

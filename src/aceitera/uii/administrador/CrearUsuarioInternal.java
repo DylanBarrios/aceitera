@@ -72,7 +72,7 @@ public class CrearUsuarioInternal extends javax.swing.JInternalFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 440, 80, -1));
 
         txtNombre.setBackground(new java.awt.Color(1, 1, 1));
-        txtNombre.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(254, 254, 254));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -82,7 +82,7 @@ public class CrearUsuarioInternal extends javax.swing.JInternalFrame {
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 420, 40));
 
         txtTelefono.setBackground(new java.awt.Color(1, 1, 1));
-        txtTelefono.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(254, 254, 254));
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -92,7 +92,7 @@ public class CrearUsuarioInternal extends javax.swing.JInternalFrame {
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 420, 40));
 
         txtUsuario.setBackground(new java.awt.Color(1, 1, 1));
-        txtUsuario.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        txtUsuario.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 420, 40));
 
@@ -102,7 +102,7 @@ public class CrearUsuarioInternal extends javax.swing.JInternalFrame {
         getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 420, 40));
 
         comboRangos.setBackground(new java.awt.Color(1, 1, 1));
-        comboRangos.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        comboRangos.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         comboRangos.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(comboRangos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 420, 40));
 

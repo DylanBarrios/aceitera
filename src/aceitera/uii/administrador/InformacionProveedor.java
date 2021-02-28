@@ -53,17 +53,17 @@ public class InformacionProveedor extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
 
         txtDireccion.setBackground(new java.awt.Color(1, 1, 1));
-        txtDireccion.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtDireccion.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 300, 40));
 
         txtTelefono.setBackground(new java.awt.Color(1, 1, 1));
-        txtTelefono.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 300, 40));
 
         txtNombre.setBackground(new java.awt.Color(1, 1, 1));
-        txtNombre.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(254, 254, 254));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 300, 40));
 

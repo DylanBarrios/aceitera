@@ -102,7 +102,7 @@ public class Devolucion extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 110, 50));
 
         lblProducto.setFont(new java.awt.Font("Lato Heavy", 1, 22)); // NOI18N
-        lblProducto.setForeground(new java.awt.Color(0, 0, 0));
+        lblProducto.setForeground(new java.awt.Color(255, 255, 255));
         lblProducto.setText("Aqui");
         getContentPane().add(lblProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 200, 30));
 

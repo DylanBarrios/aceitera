@@ -2,7 +2,7 @@ package aceitera.uii.administrador;
 
 import aceitera.mysql.InformacionProveedorSql;
 import aceitera.mysql.InformacionUsuarioSql;
-import aceitera.mysql.VerUsuarios;
+import aceitera.mysql.Busqueda;
 import static aceitera.uii.administrador.Administrador.PanelPrincipal;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,7 +22,7 @@ public class VerProveedoresInternal extends javax.swing.JInternalFrame {
     
     private void mostrar(){
         String Consulta = "SELECT * FROM proveedores ORDER BY nombre ASC";                          //Consulta que se hara a la D.B.
-        ResultSet rs = VerUsuarios.getUsuarios(Consulta);
+        ResultSet rs = Busqueda.getResultset(Consulta);
         modelo.setColumnIdentifiers(                                            //Columnas que se llenaran
         new Object[] {
                       "Nombre",
@@ -55,6 +55,7 @@ public class VerProveedoresInternal extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
+        tableUsuarios.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -92,11 +93,12 @@ public class VerProveedoresInternal extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1192, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2))
+                .addComponent(jButton2)
+                .addContainerGap(1447, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,8 +107,8 @@ public class VerProveedoresInternal extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE))
         );
 
         pack();

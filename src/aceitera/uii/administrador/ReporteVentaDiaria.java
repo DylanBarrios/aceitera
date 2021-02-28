@@ -40,11 +40,12 @@ public class ReporteVentaDiaria extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Fecha Inicio");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jLabel2.setText("Fecha Fin");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
+        tableReporte.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         tableReporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -56,9 +57,10 @@ public class ReporteVentaDiaria extends javax.swing.JInternalFrame {
                 "Producto", "Cantidad", "Total", "Vendedor", "Fecha", "Vendedor Devuelve", "Cantidad Devuelta"
             }
         ));
+        tableReporte.setRowHeight(24);
         jScrollPane1.setViewportView(tableReporte);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1260, 560));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1510, 630));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceitera/images/iconoReporteNuevo.png"))); // NOI18N
         jButton1.setText("Generar");
@@ -70,16 +72,22 @@ public class ReporteVentaDiaria extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 5, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, -1, -1));
 
         jLabel3.setText("Venta Total");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 610, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 700, -1, -1));
 
         labelVentaDia.setText("0.0");
-        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 600, 90, 30));
-        getContentPane().add(jdcFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 200, -1));
-        getContentPane().add(jdcFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 170, -1));
-        getContentPane().add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 928, 463));
+        getContentPane().add(labelVentaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 690, 90, 30));
+
+        jdcFechaFin.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        getContentPane().add(jdcFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 280, 30));
+
+        jdcFechaInicio.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        getContentPane().add(jdcFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 280, 30));
+
+        Wallpaper.setBackground(new java.awt.Color(102, 255, 102));
+        getContentPane().add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
